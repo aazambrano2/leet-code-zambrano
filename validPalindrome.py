@@ -1,21 +1,35 @@
+import re
+class Solution:
 
-def helper(s):
-    if len(s) <= 1:
+    '''
+    given string s
+
+    return if palidorme, else false
+    '''
+    def isPalindrome(self, s: str) -> bool:
+
+        #two pointers
+
+        s = s.replace(" ", "")
+        s = s.strip()
+        #re expressions are cooler
+        s = re.sub(r'[^a-zA-Z0-9]', '', s)
+        s = s.lower()
+
+        l = 0
+        r = len(s)-1
+        for i in range(len(s)):
+
+            #compare char not indicies
+            if s[l] != s[r]:
+                return False
+            if l > r:
+                break
+            l = l + 1
+            r = r - 1
         return True
-    
-    if s[0] != s[-1]:
-        return False
-    else:
-        return validPalindrome(s[1:-1])
 
-
-def validPalindrome(s):
-    #get rid of any unessesary characters
-   s= s.lower()
-   new_string = ""
-   for i in range(len(s)):
-       if ord(s[i]) >= 97 and ord(s[i]) <= 122: #or use isalpha()
-           new_string  = new_string  + s[i]
-   return helper(new_string)
-
-print(validPalindrome("A man, a plan, a canal: Panama"))
+    '''
+    s = wasitacaroracatisaw
+    '''
+        
